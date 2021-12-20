@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">RainbowCake</string>
+    <string name="app_name" translatable="false">RainbowCake</string>
+    <string name="locale_button">Change locale</string>
+    <string name="locale_text">Current locale: %s</string>
 </resources>

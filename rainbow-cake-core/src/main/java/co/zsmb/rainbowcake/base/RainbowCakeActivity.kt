@@ -4,11 +4,12 @@ import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import co.zsmb.rainbowcake.internal.logging.log
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
 
 /**
  * Base class for Activities that connects them to the appropriate ViewModel instances.
  */
-public abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : AppCompatActivity() {
+public abstract class RainbowCakeActivity<VS : Any, VM : RainbowCakeViewModel<VS>> : LocalizationActivity() {
 
     private val logTag: String by lazy(mode = LazyThreadSafetyMode.NONE) { "RainbowCakeActivity ($this)" }
 

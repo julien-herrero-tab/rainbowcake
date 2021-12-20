@@ -12,7 +12,16 @@ import co.zsmb.rainbowcake.demo.ui.koin.KoinFragment
 import co.zsmb.rainbowcake.demo.ui.sharedvmpager.SharedVMPagerFragment
 import co.zsmb.rainbowcake.demo.ui.viewbinding.ViewBindingSampleFragment
 import co.zsmb.rainbowcake.navigation.navigator
-import kotlinx.android.synthetic.main.fragment_example.*
+import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import kotlinx.android.synthetic.main.fragment_example.bottomSheetExampleDemoButton
+import kotlinx.android.synthetic.main.fragment_example.customAnimationDemoButton
+import kotlinx.android.synthetic.main.fragment_example.dialogExampleDemoButton
+import kotlinx.android.synthetic.main.fragment_example.koinExampleDemoButton
+import kotlinx.android.synthetic.main.fragment_example.localeExampleDemoButton
+import kotlinx.android.synthetic.main.fragment_example.localeExampleDemoTextView
+import kotlinx.android.synthetic.main.fragment_example.sharedVMDemoButton
+import kotlinx.android.synthetic.main.fragment_example.viewBindingExampleDemoButton
+import java.util.Locale
 
 class ExampleFragment : RainbowCakeFragment<ExampleViewState, ExampleViewModel>() {
 
@@ -27,11 +36,13 @@ class ExampleFragment : RainbowCakeFragment<ExampleViewState, ExampleViewModel>(
         }
 
         customAnimationDemoButton.setOnClickListener {
-            navigator?.add(FooFragment(),
-                    enterAnim = R.anim.slide_in_right,
-                    exitAnim = R.anim.slide_out_left,
-                    popEnterAnim = R.anim.slide_in_left,
-                    popExitAnim = R.anim.slide_out_right)
+            navigator?.add(
+                FooFragment(),
+                enterAnim = R.anim.slide_in_right,
+                exitAnim = R.anim.slide_out_left,
+                popEnterAnim = R.anim.slide_in_left,
+                popExitAnim = R.anim.slide_out_right
+            )
         }
 
         viewBindingExampleDemoButton.setOnClickListener {
@@ -49,10 +60,21 @@ class ExampleFragment : RainbowCakeFragment<ExampleViewState, ExampleViewModel>(
         dialogExampleDemoButton.setOnClickListener {
             ExampleDialogFragment().show(requireFragmentManager(), "DialogFragment")
         }
+
+        localeExampleDemoButton.setOnClickListener {
+            with(activity as LocalizationActivity) {
+                if (getCurrentLanguage() == Locale.ENGLISH) {
+                    setLanguage(Locale.FRENCH)
+                } else {
+                    setLanguage(Locale.ENGLISH)
+                }
+            }
+        }
+
+        val language = (activity as LocalizationActivity).getCurrentLanguage().displayLanguage
+        localeExampleDemoTextView.text = getString(R.string.locale_text, language)
     }
 
     override fun render(viewState: ExampleViewState) {
-
     }
-
 }

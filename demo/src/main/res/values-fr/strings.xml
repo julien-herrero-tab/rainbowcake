@@ -1,0 +1,4 @@
+<resources>
+    <string name="locale_button">Changer la langue</string>
+    <string name="locale_text">Langue actuelle: %s</string>
+</resources>
